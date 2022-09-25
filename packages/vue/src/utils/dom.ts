@@ -5,5 +5,11 @@ import { type Ref, unref } from 'vue'
 export function dom<T extends HTMLElement>(ref?: Ref<T | null> | T | null): T | null {
   ref = unref(ref)
   if (ref == null) return null
+
+  // Workaround for issue: https://github.com/ycs77/headlessui-float/issues/23
+  if ((ref as T & { $el: any })?.$el?.$el) {
+    return (ref as T & { $el: any })?.$el.$el
+  }
+
   return ((ref as T & { $el: unknown })?.$el ?? ref) as T | null
 }
