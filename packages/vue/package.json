@@ -36,6 +36,7 @@
   },
   "scripts": {
     "build": "vue-tsc --noEmit && vite build && vue-tsc --emitDeclarationOnly --outDir ./dist",
+    "build-no-declaration": "vue-tsc --noEmit && vite build",
     "watch": "vite build --watch"
   },
   "peerDependencies": {
